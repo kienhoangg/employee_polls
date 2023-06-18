@@ -137,13 +137,27 @@ function generateUID() {
 
 export function _getUsers() {
   return new Promise((resolve) => {
-    setTimeout(() => resolve({ ...users }), 1000);
+    setTimeout(() => {
+      if (!localStorage.getItem("users")) {
+        resolve({ ...users });
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+      const usersStorage = JSON.parse(localStorage.getItem("users"));
+      resolve({ ...usersStorage });
+    }, 1000);
   });
 }
 
 export function _getQuestions() {
   return new Promise((resolve) => {
-    setTimeout(() => resolve({ ...questions }), 1000);
+    setTimeout(() => {
+      if (!localStorage.getItem("questions")) {
+        resolve({ ...questions });
+        localStorage.setItem("questions", JSON.stringify(questions));
+      }
+      const questionsStorage = JSON.parse(localStorage.getItem("questions"));
+      resolve({ ...questionsStorage });
+    }, 1000);
   });
 }
 
@@ -220,6 +234,8 @@ export function _saveQuestionAnswer({
           },
         },
       };
+      localStorage.setItem("users", JSON.stringify(usersState));
+      localStorage.setItem("questions", JSON.stringify(questionsState));
       resolve({ users: usersState, questions: questionsState });
     }, 500);
   });

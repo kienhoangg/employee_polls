@@ -149,10 +149,10 @@ li {
   margin: 10px;
 }
 
-.questions-section,
-.done-section {
+.done-section,
+.questions-section {
   width: 100%;
-  border: 1px solid lightgray;
+  margin-top: 20px;
 }
 
 .title {

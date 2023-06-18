@@ -6,6 +6,7 @@ const New = (props) => {
   const navigate = useNavigate();
   const [optionOne, setOptionOne] = useState("");
   const [optionTwo, setOptionTwo] = useState("");
+
   const handleOptionOne = (e) => {
     setOptionOne(e.target.value);
   };
@@ -45,7 +46,11 @@ const New = (props) => {
           />
         </div>
         <div className="btnAddNewPoll">
-          <button className="btn " type="submit">
+          <button
+            className="btn "
+            type="submit"
+            disabled={optionTwo === "" || optionOne === ""}
+          >
             Submit
           </button>
         </div>
